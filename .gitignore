@@ -11,11 +11,7 @@
 # iml files
 *.iml
 
-<<<<<<< HEAD
-# Generated files
-=======
 # generated files
->>>>>>> refs/remotes/origin/master
 bin/
 gen/
 
