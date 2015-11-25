@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.udacity.yashika.myappportfolio.MainActivity">
+
+    <TextView
+        android:id="@+id/nano_degree_app_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:text="@string/nano_degree_apps_title"
+        android:textSize="25sp"/>
+
+    <Button
+        android:id="@+id/spotify_streamer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/nano_degree_app_title"
+        android:layout_marginEnd="@dimen/activity_horizontal_margin"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:layout_marginRight="@dimen/activity_horizontal_margin"
+        android:layout_marginStart="@dimen/activity_horizontal_margin"
+        android:layout_marginTop="@dimen/large_margin"
+        android:background="@color/buttonBackground"
+        android:text="@string/spoitfy_streamer"
+        android:textAllCaps="false"
+        android:textSize="15sp"/>
+
+    <Button
+        android:id="@+id/football_score"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/spotify_streamer"
+        android:layout_margin="@dimen/activity_horizontal_margin"
+        android:background="@color/buttonBackground"
+        android:text="@string/football_scores_app"
+        android:textAllCaps="false"
+        android:textSize="15sp"/>
+
+    <Button
+        android:id="@+id/library"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/football_score"
+        android:layout_marginEnd="@dimen/activity_horizontal_margin"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:layout_marginRight="@dimen/activity_horizontal_margin"
+        android:layout_marginStart="@dimen/activity_horizontal_margin"
+        android:background="@color/buttonBackground"
+        android:text="@string/library_app"
+        android:textAllCaps="false"
+        android:textSize="15sp"/>
+
+    <Button
+        android:id="@+id/build_it_bigger"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/library"
+        android:layout_margin="@dimen/activity_horizontal_margin"
+        android:background="@color/buttonBackground"
+        android:text="@string/build_it_bigger"
+        android:textAllCaps="false"
+        android:textSize="15sp"/>
+
+    <Button
+        android:id="@+id/xyz_reader"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/build_it_bigger"
+        android:layout_marginEnd="@dimen/activity_horizontal_margin"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:layout_marginRight="@dimen/activity_horizontal_margin"
+        android:layout_marginStart="@dimen/activity_horizontal_margin"
+        android:background="@color/buttonBackground"
+        android:text="@string/xyz_reader"
+        android:textAllCaps="false"
+        android:textSize="15sp"/>
+
+    <Button
+        android:id="@+id/capstone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/xyz_reader"
+        android:layout_margin="@dimen/activity_horizontal_margin"
+        android:background="@color/capstoneButtonBackground"
+        android:text="@string/capstone"
+        android:textAllCaps="false"
+        android:textSize="15sp"/>
+</RelativeLayout>
