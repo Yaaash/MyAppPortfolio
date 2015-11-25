@@ -31,15 +31,11 @@ project.properties
 /*/out
 /*/*/build
 /*/*/production
-*.iml
 *.iws
 *.ipr
 *~
 *.swp
-**/.idea/
-**/*.iml
 build/
-target/
 import-summary.txt
 # Crashlytics
 .crashlytics_data/
@@ -69,9 +65,6 @@ Network Trash Folder
 Temporary Items
 .apdisk
 
-# Windows
-# =========================
-
 # Windows image file caches
 Thumbs.db
 ehthumbs.db
@@ -87,7 +80,6 @@ $RECYCLE.BIN/
 *.msi
 *.msm
 *.msp
-*.idea
 
 # Windows shortcuts
 *.lnk
