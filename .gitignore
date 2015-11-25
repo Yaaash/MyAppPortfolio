@@ -8,6 +8,9 @@
 # Java class files
 *.class
 
+# iml files
+*.iml
+
 # Generated files
 bin/
 gen/
@@ -79,6 +82,7 @@ $RECYCLE.BIN/
 *.msi
 *.msm
 *.msp
+*.idea
 
 # Windows shortcuts
 *.lnk
