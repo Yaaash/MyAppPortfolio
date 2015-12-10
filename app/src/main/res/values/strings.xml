@@ -8,4 +8,5 @@
     <string name="xyz_reader">XYZ Reader</string>
     <string name="capstone">Capstone</string>
     <string name="button_toast">This button will launch my </string>
+    <string name="action_settings">something here</string>
 </resources>
