@@ -1,14 +1,17 @@
 package com.udacity.yashika.myappportfolio;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Toast;
 
+import com.udacity.yashika.myappportfolio.popular_movies.MovieListActivity;
+
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class MainActivity extends AppCompatActivity {
+public class AppPortfolioActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate (Bundle savedInstanceState) {
@@ -19,6 +22,8 @@ public class MainActivity extends AppCompatActivity {
 
     @OnClick(R.id.spotify_streamer)
     public void onSpotifyClick (View view) {
+        Intent intent = new Intent(AppPortfolioActivity.this, MovieListActivity.class);
+        startActivity(intent);
         Toast.makeText(this, getString(R.string.button_toast) + " " + getString(R.string.spoitfy_streamer), Toast.LENGTH_SHORT).show();
     }
 

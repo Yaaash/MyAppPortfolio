@@ -9,4 +9,6 @@
     <string name="capstone">Capstone</string>
     <string name="button_toast">This button will launch my </string>
     <string name="action_settings">something here</string>
+    <string name="title_movie_list">Movies</string>
+    <string name="title_movie_detail">Movie Detail</string>
 </resources>
