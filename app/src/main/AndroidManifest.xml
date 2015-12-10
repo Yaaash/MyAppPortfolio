@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest package="com.udacity.yashika.myappportfolio"
-          xmlns:android="http://schemas.android.com/apk/res/android"
-          xmlns:tools="http://schemas.android.com/tools">
+<manifest
+    package="com.udacity.yashika.myappportfolio"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
@@ -21,18 +22,22 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".popular_movies.MovieListActivity"
+            android:name=".popular_movies.ui.MovieListActivity"
             android:label="@string/title_movie_list">
         </activity>
         <activity
-            android:name=".popular_movies.MovieDetailActivity"
+            android:name=".popular_movies.ui.MovieDetailActivity"
             android:label="@string/title_movie_detail"
-            android:parentActivityName=".popular_movies.MovieListActivity"
+            android:parentActivityName=".popular_movies.ui.MovieListActivity"
             tools:ignore="UnusedAttribute">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.udacity.yashika.myappportfolio.popular_movies.MovieListActivity"/>
+                android:value=".popular_movies.ui.MovieListActivity"/>
         </activity>
+
+        <service
+            android:name=".popular_movies.service.MovieService"
+            android:exported="false"/>
     </application>
 
 </manifest>

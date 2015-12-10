@@ -1,4 +1,4 @@
-package com.udacity.yashika.myappportfolio.popular_movies;
+package com.udacity.yashika.myappportfolio.popular_movies.ui;
 
 import android.os.Bundle;
 import android.app.Fragment;

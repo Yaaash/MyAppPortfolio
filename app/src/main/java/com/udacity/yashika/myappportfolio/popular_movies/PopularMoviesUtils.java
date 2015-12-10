@@ -9,7 +9,7 @@ public class PopularMoviesUtils {
 
     public static final boolean DEBUGGABLE = true;
     public static final String TAG = AppPortfolioApplication.class.getSimpleName();
-    private static final String MOVIE_API_KEY = "2a558c0aa900e0db7e502f10595635e9";
+    public static final String MOVIE_API_KEY = "2a558c0aa900e0db7e502f10595635e9";
 
     public static String baseUrl() {
         String baseUrl = "";

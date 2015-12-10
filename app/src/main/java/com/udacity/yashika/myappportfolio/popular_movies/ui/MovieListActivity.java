@@ -1,10 +1,9 @@
-package com.udacity.yashika.myappportfolio.popular_movies;
+package com.udacity.yashika.myappportfolio.popular_movies.ui;
 
-import android.content.Context;
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.app.Activity;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,8 +11,8 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.udacity.yashika.myappportfolio.R;
-
-import com.udacity.yashika.myappportfolio.popular_movies.dummy.DummyContent;
+import com.udacity.yashika.myappportfolio.popular_movies.model.Movie;
+import com.udacity.yashika.myappportfolio.popular_movies.model.MovieResponse;
 
 import java.util.List;
 
@@ -25,15 +24,21 @@ import java.util.List;
  */
 public class MovieListActivity extends Activity {
 
+    private static final String TAG = MovieListActivity.class.getSimpleName();
     /**
      * Whether or not the activity is in two-pane mode, i.e. running on a tablet device.
      */
     private boolean mTwoPane;
+    private MovieResponse movieResponse;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_movie_list);
+
+        Intent intent = this.getIntent();
+        Bundle bundle = intent.getExtras();
+        movieResponse = (MovieResponse) bundle.getSerializable(TAG);
 
         View recyclerView = findViewById(R.id.movie_list);
         assert recyclerView != null;
@@ -49,16 +54,19 @@ public class MovieListActivity extends Activity {
     }
 
     private void setupRecyclerView(@NonNull RecyclerView recyclerView) {
-        recyclerView.setAdapter(new SimpleItemRecyclerViewAdapter(DummyContent.ITEMS));
+        if(movieResponse != null) {
+            if(movieResponse.getMovies() != null)
+                recyclerView.setAdapter(new SimpleItemRecyclerViewAdapter(movieResponse.getMovies()));
+        }
     }
 
     public class SimpleItemRecyclerViewAdapter
             extends RecyclerView.Adapter<SimpleItemRecyclerViewAdapter.ViewHolder> {
 
-        private final List<DummyContent.DummyItem> mValues;
+        private final List<Movie> movies;
 
-        public SimpleItemRecyclerViewAdapter(List<DummyContent.DummyItem> items) {
-            mValues = items;
+        public SimpleItemRecyclerViewAdapter(List<Movie> movies) {
+            this.movies = movies;
         }
 
         @Override
@@ -70,27 +78,27 @@ public class MovieListActivity extends Activity {
 
         @Override
         public void onBindViewHolder(final ViewHolder holder, int position) {
-            holder.mItem = mValues.get(position);
-            holder.mIdView.setText(mValues.get(position).id);
-            holder.mContentView.setText(mValues.get(position).content);
+            holder.movie = movies.get(position);
+            holder.titleText.setText(movies.get(position).getMovieTitle());
+            holder.contentText.setText(movies.get(position).getMovieOverview());
 
             holder.mView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     if(mTwoPane) {
-                        Bundle arguments = new Bundle();
-                        arguments.putString(MovieDetailFragment.ARG_ITEM_ID, holder.mItem.id);
-                        MovieDetailFragment fragment = new MovieDetailFragment();
-                        fragment.setArguments(arguments);
-                        getFragmentManager().beginTransaction()
-                                .replace(R.id.movie_detail_container, fragment)
-                                .commit();
+//                        Bundle arguments = new Bundle();
+//                        arguments.putString(MovieDetailFragment.ARG_ITEM_ID, holder.movie.id);
+//                        MovieDetailFragment fragment = new MovieDetailFragment();
+//                        fragment.setArguments(arguments);
+//                        getFragmentManager().beginTransaction()
+//                                .replace(R.id.movie_detail_container, fragment)
+//                                .commit();
                     } else {
-                        Context context = v.getContext();
-                        Intent intent = new Intent(context, MovieDetailActivity.class);
-                        intent.putExtra(MovieDetailFragment.ARG_ITEM_ID, holder.mItem.id);
-
-                        context.startActivity(intent);
+//                        Context context = v.getContext();
+//                        Intent intent = new Intent(context, MovieDetailActivity.class);
+//                        intent.putExtra(MovieDetailFragment.ARG_ITEM_ID, holder.movie.id);
+//
+//                        context.startActivity(intent);
                     }
                 }
             });
@@ -98,25 +106,25 @@ public class MovieListActivity extends Activity {
 
         @Override
         public int getItemCount() {
-            return mValues.size();
+            return movies.size();
         }
 
         public class ViewHolder extends RecyclerView.ViewHolder {
             public final View mView;
-            public final TextView mIdView;
-            public final TextView mContentView;
-            public DummyContent.DummyItem mItem;
+            public final TextView titleText;
+            public final TextView contentText;
+            public Movie movie;
 
             public ViewHolder(View view) {
                 super(view);
                 mView = view;
-                mIdView = (TextView) view.findViewById(R.id.id);
-                mContentView = (TextView) view.findViewById(R.id.content);
+                titleText = (TextView) view.findViewById(R.id.id);
+                contentText = (TextView) view.findViewById(R.id.content);
             }
 
             @Override
             public String toString() {
-                return super.toString() + " '" + mContentView.getText() + "'";
+                return super.toString() + " '" + contentText.getText() + "'";
             }
         }
     }

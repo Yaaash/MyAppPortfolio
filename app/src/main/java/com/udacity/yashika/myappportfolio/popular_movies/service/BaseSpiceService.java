@@ -34,7 +34,7 @@ import retrofit.converter.GsonConverter;
 /**
  * @author yashika.
  */
-public class BaseSpiceService extends SpiceService {
+public class BaseSpiceService<T> extends SpiceService {
 
     private RestAdapter restAdapter;
     private RestAdapter.Builder builder;

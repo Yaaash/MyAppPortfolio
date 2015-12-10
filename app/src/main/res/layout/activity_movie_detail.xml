@@ -3,5 +3,5 @@
              xmlns:tools="http://schemas.android.com/tools"
              android:layout_width="match_parent"
              android:layout_height="match_parent"
-             tools:context="com.udacity.yashika.myappportfolio.popular_movies.MovieDetailActivity"
+             tools:context=".popular_movies.ui.MovieDetailActivity"
              tools:ignore="MergeRootFrame"/>
