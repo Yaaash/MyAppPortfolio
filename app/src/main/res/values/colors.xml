@@ -4,7 +4,14 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
     <color name="windowBackground">#FCE4EC</color>
-    <color name="textColorPrimary">#FFFFFF</color>
+    <color name="white">#FFFFFF</color>
     <color name="buttonBackground">#FF4081</color>
     <color name="capstoneButtonBackground">#C51162</color>
+    <color name="black">#000000</color>
+    <color name="green_009688">#009688</color>
+    <color name="grey_747474">#747474</color>
+    <color name="grey_696666">#696666</color>
+    <color name="grey_737373">#737373</color>
+    <color name="grey_7E7E7E">#7E7E7E</color>
+    <color name="blue_86E4DB">#86E4DB</color>
 </resources>
