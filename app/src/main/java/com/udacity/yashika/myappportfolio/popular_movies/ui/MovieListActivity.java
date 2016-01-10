@@ -1,14 +1,17 @@
 package com.udacity.yashika.myappportfolio.popular_movies.ui;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -26,14 +29,13 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 
 /**
- * This activity is used in Popular movies application to show most popular movies
- * <p/>
- * An activity representing a list of Movies. This activity has different presentations for handset
- * and tablet-size devices. On handsets, the activity presents a list of items, which when touched,
- * lead to a {@link MovieDetailActivity} representing item details. On tablets, the activity
- * presents the list of items and item details side-by-side using two vertical panes.
+ * This activity is used in Popular movies application to show most popular movies An activity
+ * representing a list of Movies. This activity has different presentations for handset and
+ * tablet-size devices. On handsets, the activity presents a list of items, which when touched, lead
+ * to a {@link MovieDetailActivity} representing item details. On tablets, the activity presents the
+ * list of items and item details side-by-side using two vertical panes.
  */
-public class MovieListActivity extends Activity {
+public class MovieListActivity extends AppCompatActivity {
 
     private static final String TAG = MovieListActivity.class.getSimpleName();
     private static final int COLUMN_2 = 2;
@@ -51,8 +53,9 @@ public class MovieListActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_movie_list);
-
         ButterKnife.bind(this);
+        movieListRecycleViewAdapter = new MovieListRecycleViewAdapter(this);
+
         Intent intent = this.getIntent();
         Bundle bundle = intent.getExtras();
         if(bundle != null) {
@@ -80,12 +83,44 @@ public class MovieListActivity extends Activity {
         }
         if(movieResponse != null) {
             if(movieResponse.getMovies() != null) {
-                movieListRecycleViewAdapter = new MovieListRecycleViewAdapter(this);
-                int spacingInPixels = getResources().getDimensionPixelSize(R.dimen.spacing);
+                int spacingInPixels = getResources().getDimensionPixelSize(R.dimen.size_0);
                 recyclerView.addItemDecoration(new SpacesItemDecoration(spacingInPixels));
                 recyclerView.setAdapter(movieListRecycleViewAdapter);
                 movieListRecycleViewAdapter.setMovies(movieResponse.getMovies());
             }
+        }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.movie_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch(item.getItemId()) {
+            case R.id.popularity:
+                if(movieResponse != null) {
+                    if(movieResponse.getMovies() != null) {
+                        ArrayList<Movie> movies = PopularMoviesUtils.sortMoviesByPopularity(movieResponse.getMovies());
+                        movieListRecycleViewAdapter.setMovies(movies);
+                        movieListRecycleViewAdapter.notifyDataSetChanged();
+                    }
+                }
+                return true;
+            case R.id.rating:
+                if(movieResponse != null) {
+                    if(movieResponse.getMovies() != null) {
+                        ArrayList<Movie> movies = PopularMoviesUtils.sortMoviesByHighestRating(movieResponse.getMovies());
+                        movieListRecycleViewAdapter.setMovies(movies);
+                        movieListRecycleViewAdapter.notifyDataSetChanged();
+                    }
+                }
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
         }
     }
 

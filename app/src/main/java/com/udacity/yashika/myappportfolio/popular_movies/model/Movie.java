@@ -25,6 +25,7 @@ public class Movie implements Parcelable {
             return new Movie[size];
         }
     };
+
     @SerializedName("poster_path")
     private String moviePoster;
     @SerializedName("adult")
@@ -46,13 +47,13 @@ public class Movie implements Parcelable {
     @SerializedName("backdrop_path")
     private String movieBackdrop;
     @SerializedName("popularity")
-    private String popularity;
+    private float popularity;
     @SerializedName("vote_count")
     private String voteCount;
     @SerializedName("video")
-    private String video;
+    private boolean hasVideo;
     @SerializedName("vote_average")
-    private String averageVote;
+    private float averageVote;
 
     protected Movie(Parcel in) {
         moviePoster = in.readString();
@@ -64,10 +65,10 @@ public class Movie implements Parcelable {
         originalMovieLang = in.readString();
         movieTitle = in.readString();
         movieBackdrop = in.readString();
-        popularity = in.readString();
+        popularity = in.readFloat();
         voteCount = in.readString();
-        video = in.readString();
-        averageVote = in.readString();
+        hasVideo = in.readByte() != 0;
+        averageVote = in.readFloat();
         genreIds = (ArrayList<Integer>) in.readSerializable();
     }
 
@@ -154,11 +155,11 @@ public class Movie implements Parcelable {
         this.movieBackdrop = movieBackdrop;
     }
 
-    public String getPopularity() {
+    public float getPopularity() {
         return popularity;
     }
 
-    public void setPopularity(String popularity) {
+    public void setPopularity(float popularity) {
         this.popularity = popularity;
     }
 
@@ -170,19 +171,19 @@ public class Movie implements Parcelable {
         this.voteCount = voteCount;
     }
 
-    public String isVideo() {
-        return video;
+    public boolean hasVideo() {
+        return hasVideo;
     }
 
-    public void setVideo(String video) {
-        this.video = video;
+    public void setHasVideo(boolean hasVideo) {
+        this.hasVideo = hasVideo;
     }
 
-    public String getAverageVote() {
+    public float getAverageVote() {
         return averageVote;
     }
 
-    public void setAverageVote(String averageVote) {
+    public void setAverageVote(float averageVote) {
         this.averageVote = averageVote;
     }
 
@@ -202,10 +203,10 @@ public class Movie implements Parcelable {
         dest.writeString(originalMovieLang);
         dest.writeString(movieTitle);
         dest.writeString(movieBackdrop);
-        dest.writeString(popularity);
+        dest.writeFloat(popularity);
         dest.writeString(voteCount);
-        dest.writeString(video);
-        dest.writeString(averageVote);
+        dest.writeByte((byte) (hasVideo ? 1 : 0));
+        dest.writeFloat(averageVote);
         dest.writeSerializable(genreIds);
     }
 }

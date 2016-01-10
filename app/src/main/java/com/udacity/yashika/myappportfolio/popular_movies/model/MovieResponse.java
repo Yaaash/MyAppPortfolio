@@ -8,6 +8,8 @@ import com.google.gson.annotations.SerializedName;
 import java.util.ArrayList;
 
 /**
+ * This class is received while Api is called for popular movies
+ *
  * @author yashika.
  */
 public class MovieResponse implements Parcelable {
@@ -23,6 +25,7 @@ public class MovieResponse implements Parcelable {
             return new MovieResponse[size];
         }
     };
+
     @SerializedName("page")
     private String currentPage;
     @SerializedName("results")

@@ -3,9 +3,18 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="large_margin">25dp</dimen>
-    <dimen name="recycler_view_width">200dp</dimen>
-    <dimen name="item_width">100dp</dimen>
-    <dimen name="item_height">150dp</dimen>
+    <dimen name="size_250">250dp</dimen>
+    <dimen name="size_200">200dp</dimen>
+    <dimen name="size_100">100dp</dimen>
+    <dimen name="size_150">150dp</dimen>
+    <dimen name="size_180">180dp</dimen>
     <dimen name="text_margin">16dp</dimen>
-    <dimen name="spacing">0dp</dimen>
+    <dimen name="size_0">0dp</dimen>
+    <dimen name="size_20">20dp</dimen>
+    <dimen name="size_30">30dp</dimen>
+    <dimen name="size_10">10dp</dimen>
+    <dimen name="font_45">45sp</dimen>
+    <dimen name="font_30">30sp</dimen>
+    <dimen name="font_20">20sp</dimen>
+    <dimen name="font_25">25sp</dimen>
 </resources>
