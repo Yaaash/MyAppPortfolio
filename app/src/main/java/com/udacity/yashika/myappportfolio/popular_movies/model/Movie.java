@@ -1,15 +1,30 @@
 package com.udacity.yashika.myappportfolio.popular_movies.model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.annotations.SerializedName;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
+ * This class is used to as model class for Movie object
+ *
  * @author yashika.
  */
-public class Movie implements Serializable {
+public class Movie implements Parcelable {
 
+    public static final Creator<Movie> CREATOR = new Creator<Movie>() {
+        @Override
+        public Movie createFromParcel(Parcel in) {
+            return new Movie(in);
+        }
+
+        @Override
+        public Movie[] newArray(int size) {
+            return new Movie[size];
+        }
+    };
     @SerializedName("poster_path")
     private String moviePoster;
     @SerializedName("adult")
@@ -38,6 +53,23 @@ public class Movie implements Serializable {
     private String video;
     @SerializedName("vote_average")
     private String averageVote;
+
+    protected Movie(Parcel in) {
+        moviePoster = in.readString();
+        adult = in.readString();
+        movieOverview = in.readString();
+        releaseDate = in.readString();
+        movieID = in.readInt();
+        originalMovieTitle = in.readString();
+        originalMovieLang = in.readString();
+        movieTitle = in.readString();
+        movieBackdrop = in.readString();
+        popularity = in.readString();
+        voteCount = in.readString();
+        video = in.readString();
+        averageVote = in.readString();
+        genreIds = (ArrayList<Integer>) in.readSerializable();
+    }
 
     public String getMoviePoster() {
         return moviePoster;
@@ -72,7 +104,10 @@ public class Movie implements Serializable {
     }
 
     public ArrayList<Integer> getGenreIds() {
-        return genreIds;
+        if(genreIds != null) {
+            return genreIds;
+        }
+        return new ArrayList<>();
     }
 
     public void setGenreIds(ArrayList<Integer> genreIds) {
@@ -151,4 +186,26 @@ public class Movie implements Serializable {
         this.averageVote = averageVote;
     }
 
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(moviePoster);
+        dest.writeString(adult);
+        dest.writeString(movieOverview);
+        dest.writeString(releaseDate);
+        dest.writeInt(movieID);
+        dest.writeString(originalMovieTitle);
+        dest.writeString(originalMovieLang);
+        dest.writeString(movieTitle);
+        dest.writeString(movieBackdrop);
+        dest.writeString(popularity);
+        dest.writeString(voteCount);
+        dest.writeString(video);
+        dest.writeString(averageVote);
+        dest.writeSerializable(genreIds);
+    }
 }

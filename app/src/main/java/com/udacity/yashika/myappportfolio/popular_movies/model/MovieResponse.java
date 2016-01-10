@@ -1,15 +1,28 @@
 package com.udacity.yashika.myappportfolio.popular_movies.model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.annotations.SerializedName;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  * @author yashika.
  */
-public class MovieResponse implements Serializable {
+public class MovieResponse implements Parcelable {
 
+    public static final Creator<MovieResponse> CREATOR = new Creator<MovieResponse>() {
+        @Override
+        public MovieResponse createFromParcel(Parcel in) {
+            return new MovieResponse(in);
+        }
+
+        @Override
+        public MovieResponse[] newArray(int size) {
+            return new MovieResponse[size];
+        }
+    };
     @SerializedName("page")
     private String currentPage;
     @SerializedName("results")
@@ -18,6 +31,13 @@ public class MovieResponse implements Serializable {
     private String totalResults;
     @SerializedName("total_pages")
     private String totalPages;
+
+    protected MovieResponse(Parcel in) {
+        currentPage = in.readString();
+        movies = in.createTypedArrayList(Movie.CREATOR);
+        totalResults = in.readString();
+        totalPages = in.readString();
+    }
 
     public String getCurrentPage() {
         return currentPage;
@@ -28,7 +48,10 @@ public class MovieResponse implements Serializable {
     }
 
     public ArrayList<Movie> getMovies() {
-        return movies;
+        if(movies != null) {
+            return movies;
+        }
+        return new ArrayList<>();
     }
 
     public void setMovies(ArrayList<Movie> movies) {
@@ -51,4 +74,16 @@ public class MovieResponse implements Serializable {
         this.totalPages = totalPages;
     }
 
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(currentPage);
+        dest.writeTypedList(movies);
+        dest.writeString(totalResults);
+        dest.writeString(totalPages);
+    }
 }

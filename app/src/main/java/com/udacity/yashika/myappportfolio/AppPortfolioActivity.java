@@ -24,7 +24,7 @@ public class AppPortfolioActivity extends AppCompatActivity {
     private static final String TAG = MovieListActivity.class.getSimpleName();
 
     private SpiceManager movieSpiceManger = new SpiceManager(MovieService.class);
-    private MovieRequest movieRequest = null;
+    private MovieRequest movieRequest;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,11 +82,10 @@ public class AppPortfolioActivity extends AppCompatActivity {
         @Override
         public void onRequestSuccess(MovieResponse movieResponse) {
             // Todo: This is when the call goes through and you get a response. Check if success and do the needful.
-            Log.d(TAG, movieResponse.toString());
             Toast.makeText(getApplicationContext(), "SUCCESS", Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(AppPortfolioActivity.this, MovieListActivity.class);
             Bundle bundle = new Bundle();
-            bundle.putSerializable(TAG, movieResponse);
+            bundle.putParcelable(TAG, movieResponse);
             intent.putExtras(bundle);
             startActivity(intent);
         }
