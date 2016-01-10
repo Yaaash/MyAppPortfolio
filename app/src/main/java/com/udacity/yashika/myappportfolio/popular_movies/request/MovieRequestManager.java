@@ -15,9 +15,10 @@ public interface MovieRequestManager {
     /**
      * This is the method that is used to make the post call to make the movie request.
      *
+     * if u want key - please check ReadMe file
      * @return An object of MovieResponse.
      */
-    @GET("/discover/movie?api_key=2a558c0aa900e0db7e502f10595635e9")
+    @GET("/discover/movie?api_key=")
     MovieResponse getMovieRequest();
 
 }
